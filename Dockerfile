@@ -18,7 +18,6 @@ RUN apt-get update && \
         supervisor \
         libmysqlclient-dev \
         sqlite3 && \
-	vim \
         pip install -U pip setuptools && \
         rm -rf /var/lib/apt/lists/*
 
