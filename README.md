@@ -19,5 +19,5 @@ docker build -t <image_name> .
 ```
 4. Run the docker image
 ```bash
-docker run --name <container_name> --link spearmintdb:mysql -e VIRTUAL_HOST=spmint.chestimagingplatform.org -d <image_name>
+docker run --name <container_name> --link spearmintdb:mysql -e VIRTUAL_HOST=<domain_name> -d <image_name>
 ```
