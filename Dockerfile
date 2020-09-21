@@ -1,5 +1,5 @@
 
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 MAINTAINER Dockerfiles
 
@@ -9,17 +9,19 @@ RUN apt-get update && \
     apt-get upgrade -y && \ 
     apt-get install -y \
         git \
-        python \
-        python-dev \
+        python3 \
+        python3-dev \
         libpq-dev \
         python-setuptools \
-        python-pip \
+        python3-pip \
         nginx \
         supervisor \
         libmysqlclient-dev \
         sqlite3 && \
-        pip install -U pip setuptools && \
-        rm -rf /var/lib/apt/lists/*
+    rm /usr/bin/python && \
+    ln -s /usr/bin/python3 /usr/bin/python && \
+    pip3 install -U pip setuptools && \
+    rm -rf /var/lib/apt/lists/*
 
 # install uwsgi
 RUN pip install uwsgi
@@ -36,8 +38,6 @@ COPY supervisor-app.conf /etc/supervisor/conf.d/
 
 COPY requirements.txt /home/docker/code/SpearmintServer/
 RUN pip install -r /home/docker/code/SpearmintServer/requirements.txt
-COPY requirements2.txt /home/docker/code/SpearmintServer/
-RUN pip --no-cache-dir install -r /home/docker/code/SpearmintServer/requirements2.txt
 
 # add (the rest of) our code
 COPY . /home/docker/code/
