@@ -46,7 +46,7 @@ ENV HOME /home/docker/code/SpearmintServer/
 WORKDIR $HOME
 
 RUN python manage.py collectstatic --noinput
-RUN pip install git+http://github.com/acil-bwh/Spearmint.git@python3-migration
+RUN pip install git+http://github.com/acil-bwh/Spearmint.git@develop
 RUN python setup.py install
 
 
